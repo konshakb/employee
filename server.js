@@ -1,10 +1,15 @@
 const express = require(`express`);
 
+//integrated mysql
+const path = require(`path`);
+const config = require(`./config`);
+
 const users = require(`./routes/api/users`);
 const profile = require(`./routes/api/profile`);
 const posts = require(`./routes/api/posts`);
 const app = express();
-
+//INTEGRATED
+app.disable(`etag`);
 app.get("/", (req, res) => res.send(`Hello `));
 
 //use routs
