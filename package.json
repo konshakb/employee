@@ -1,0 +1,40 @@
+{
+  "name": "capstone",
+  "version": "1.0.0",
+  "description": "capstone project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Bryan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/datastore": "2.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "lodash": "4.17.11",
+    "mongoose": "^5.4.7",
+    "mysql": "2.16.0",
+    "nconf": "0.10.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "prompt": "1.0.0",
+    "pug": "^2.0.3",
+    "uglify-js": "3.4.9",
+    "validator": "^10.11.0"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^3.0.0",
+    "ava": "0.25.0",
+    "nodemon": "^1.18.9",
+    "proxyquire": "2.1.0",
+    "sinon": "^7.0.0"
+  }
+}
