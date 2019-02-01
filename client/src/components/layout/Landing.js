@@ -13,10 +13,10 @@ class Landing extends Component {
                 <p className="lead"> Reward Your Team</p>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
-                  Sign Up
+                  New User
                 </Link>
                 <Link to="/login" className="btn btn-lg btn-light">
-                  Login
+                  New Admin
                 </Link>
               </div>
             </div>

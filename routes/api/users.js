@@ -77,4 +77,26 @@ router.post("/", (req, res, next) => {
     });
   });
 });
+router.post("/admin", (req, res, next) => {
+  const newUsers = {
+    email: req.body.email,
+    password: req.body.password,
+    admin: true
+  };
+
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUsers.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUsers.password = hash;
+      getModel().create(newUsers, (err, entity2) => {
+        if (err) {
+          next(err);
+          return;
+        }
+        console.log(entity2);
+        res.json(entity2);
+      });
+    });
+  });
+});
 module.exports = router;

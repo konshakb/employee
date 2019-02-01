@@ -52,13 +52,30 @@ function list(limit, token, cb) {
 
 // [START create]
 function create(data, cb) {
-  connection.query("INSERT INTO `users` SET ?", data, (err, res) => {
-    if (err) {
-      cb(err);
-      return;
-    }
-    read(res.insertId, cb);
-  });
+  console.log(data);
+  if (data.admin) {
+    const admin = {
+      email: data.email,
+      password: data.password
+    };
+    console.log(admin);
+    connection.query("INSERT INTO `admin` SET ?", admin, (err, res) => {
+      if (err) {
+        cb(err);
+        return;
+      }
+      console.log(cb);
+      read(res.insertId, cb);
+    });
+  } else {
+    connection.query("INSERT INTO `users` SET ?", data, (err, res) => {
+      if (err) {
+        cb(err);
+        return;
+      }
+      read(res.insertId, cb);
+    });
+  }
 }
 // [END create]
 
@@ -134,7 +151,7 @@ function createSchema(config) {
     )
   );
 
-  connection.query(
+  /*connection.query(
     `CREATE DATABASE IF NOT EXISTS \`rewarddb\`
       DEFAULT CHARACTER SET = 'utf8'
       DEFAULT COLLATE 'utf8_general_ci';
@@ -149,6 +166,16 @@ function createSchema(config) {
       \`created_on\` VARCHAR(255) NULL,
       \`signature\` VARCHAR(255) NULL,
       \`created_by\` INT(11) NULL,
+    PRIMARY KEY (\`id\`));`,*/
+  connection.query(
+    `CREATE DATABASE IF NOT EXISTS \`rewarddb\`
+      DEFAULT CHARACTER SET = 'utf8'
+      DEFAULT COLLATE 'utf8_general_ci';
+    USE \`rewarddb\`;
+    CREATE TABLE IF NOT EXISTS \`rewarddb\`.\`admin\` (
+      \`id\` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+      \`email\` VARCHAR(255) NULL,
+      \`password\` VARCHAR(255) NULL,
     PRIMARY KEY (\`id\`));`,
     err => {
       if (err) {
